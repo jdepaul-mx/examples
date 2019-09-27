@@ -1,0 +1,11 @@
+### Maven
+wget http://mirror.metrocast.net/apache/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.tar.gz
+tar -xvzf apache-maven-3.6.1-bin.tar.gz -C ../tools
+sudo mvn tools/apache-maven-3.6.1 /opt/apache-maven-3.6.1
+
+### Modify ~/.bashrc like this:
+export JAVA_HOME=/usr/java/jdk1.8.0_221-amd64
+export PATH=$PATH:$JAVA_HOME
+export PATH=/tools/apache-maven-3.6.1/bin:$PATH
+source .bashrc
+

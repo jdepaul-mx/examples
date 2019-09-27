@@ -1,0 +1,2 @@
+bootstrap.servers=tcp.ecosystem-dev.k8s.us-east-1.dg-commercial-dev-01.satcloud.us:30016,tcp.ecosystem-dev.k8s.us-east-1.dg-commercial-dev-01.satcloud.us:30017,tcp.ecosystem-dev.k8s.us-east-1.dg-commercial-dev-01.satcloud.us:30018
+client.id=jdepaul-client
