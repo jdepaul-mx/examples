@@ -41,6 +41,10 @@ import java.util.Map;
 
 public class ProducerExample {
 
+  // True - Create the given topic (default)
+  // False - Don't create the topic
+  public static boolean CREATE_TOPIC = true;
+
   // Create topic in Confluent Cloud
   public static void createTopic(final String topic,
                           final int partitions,
@@ -58,9 +62,14 @@ public class ProducerExample {
   }
 
   public static void main(final String[] args) throws IOException {
-    if (args.length != 2) {
-      System.out.println("Please provide command line arguments: configPath topic");
+    if (args.length != 3) {
+      System.out.println("Please provide command line arguments: configPath topic create [y|n:y]");
       System.exit(1);
+    }
+    
+    // By default, it will create the Topic, but if 'n' or 'N' the topic creation will be skipped
+    if ((args[2] != null) && (args[2].toUpperCase().startsWith("N"))) {
+    	CREATE_TOPIC = false;
     }
 
     // Load properties from a configuration file
@@ -76,7 +85,13 @@ public class ProducerExample {
 
     // Create topic if needed
     final String topic = args[1];
-    createTopic(topic, 1, 1, props);
+    
+    if (CREATE_TOPIC) {
+    	System.out.println("About to create topic '" + topic + "'");
+  		createTopic(topic, 1, 1, props);
+    } else {
+    	System.out.println("Skipping topic creation for topic '" + topic + "'");
+    }
 
     // Add additional properties.
     props.put(ProducerConfig.ACKS_CONFIG, "all");
